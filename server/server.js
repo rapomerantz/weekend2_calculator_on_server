@@ -16,32 +16,66 @@ app.get('/history', (req, res) => {
 
 
 //take in POST from client and route to correct equation function
+//add .result and push entire object to equationHistory
 app.post('/history', (req, res) => {
     let input = req.body
-    let x = parseInt(input.x);
-    let y = parseInt(input.y);
+    let x = parseFloat(input.x);
+    let y = parseFloat(input.y);
     let operator = input.operator;
+
     if (operator === "+") {
-        input.result = addition(x, y).toFixed(2);
-        console.log("new input object", input);
-        equationHistory.push(input); 
+        let answer = addition(x, y)
+            if (answer%1 === 0){
+                input.result = answer;
+                equationHistory.push(input); 
+            } else {
+                answer = answer.toFixed(3);
+                input.result = answer;
+                equationHistory.push(input); 
+            }
+
     } else if (operator === "-") {
-        input.result = subtraction(x, y).toFixed(2);
-        console.log("new input object", input);
-        equationHistory.push(input); 
+        let answer = subtraction(x, y)
+            if (answer%1 === 0){
+                input.result = answer;
+                equationHistory.push(input); 
+
+            } else {
+                answer = answer.toFixed(3);
+                input.result = answer;
+                equationHistory.push(input); 
+            } 
+
     } else if (operator === "*") {
-        input.result = multiplication(x, y).toFixed(2);
-        console.log("new input object", input);
-        equationHistory.push(input); 
+        let answer = multiplication(x, y)
+            if (answer%1 === 0){
+                input.result = answer;
+                equationHistory.push(input); 
+
+            } else {
+                answer = answer.toFixed(3);
+                input.result = answer;
+                equationHistory.push(input); 
+            }
+
     } else if (operator === "/") {
-        input.result = division(x, y).toFixed(2);
-        console.log("new input object", input);
-        equationHistory.push(input); 
+        let answer = division(x, y)
+            if (answer%1 === 0){
+                input.result = answer;
+                equationHistory.push(input); 
+
+            } else {
+                answer = answer.toFixed(3);
+                input.result = answer;
+                equationHistory.push(input); 
+            }
     }
     console.log("equationHistory:", equationHistory);
     res.sendStatus(200); 
 
 })
+
+
 
 
 

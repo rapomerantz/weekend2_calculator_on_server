@@ -16,7 +16,6 @@ function submitClicked () {
     let xInput = $('#xInput').val();
     let yInput = $('#yInput').val();
     let operatorInput = $('input[name=operatorSel]:checked').val();
-    console.log('submit clicked:', xInput, yInput, operatorInput);
     // inputToClass(xInput, yInput, operatorInput); 
     postEquation(xInput, yInput, operatorInput);
 }
@@ -28,19 +27,18 @@ function submitClicked () {
 
 
 function appendToTable(responseObject) {
-    // let xInput = $('#xInput').val();
-    // let yInput = $('#yInput').val();
-    // let operatorInput = $('input[name=operatorSel]:checked').val();
-    // let result = 11; 
-    console.log(responseObject);
-            
-
-    // let tr = $('<tr></tr>')
-    // tr.append('<td>' + xInput + '</td>');
-    // tr.append('<td>' + operatorInput + '</td>');
-    // tr.append('<td>' + yInput + '</td>');
-    // tr.append('<td>' + result + '</td>');
-    // $("#tableTarget").append(tr); 
+    for (let each of responseObject) {
+        let xInput = each.x;
+        let yInput = each.y;
+        let operatorInput = each.operator;
+        let result = each.result; 
+        let tr = $('<tr></tr>')
+        tr.append('<td>' + xInput + '</td>');
+        tr.append('<td>' + operatorInput + '</td>');
+        tr.append('<td>' + yInput + '</td>');
+        tr.append('<td>' + result + '</td>');
+        $("#tableTarget").append(tr); 
+    }
 }
 
 
@@ -52,7 +50,7 @@ function getHistory() {
         type: 'GET',
         url: '/history',
     }).done(function (response){
-        console.log('GET request complete: ', response);
+        // console.log('GET request complete: ', response);
         appendToTable(response);
     })
 
@@ -62,16 +60,14 @@ function getHistory() {
 // POST function for inputs from DOM
 //called from submit Click
 function postEquation (xIn, yIn, operatorIn) {
-    let x = parseInt(xIn);
-    let y = parseInt(yIn);
+    let x = parseFloat(xIn);
+    let y = parseFloat(yIn);
     let equationToSend = {x: x, y: y, operator: operatorIn}
-    console.log("in postEquation, equationToSend: ", equationToSend)
     $.ajax({
         type: "POST",
         data: equationToSend,
         url: "/history",
     }).done(function(response){
-        console.log("Post successful!");
         getHistory()
     }).fail(function(response){
         alert("something went wrong...")

@@ -8,29 +8,30 @@ ON THE DOM:
 jQuery: 
 [x] Accept .val() of input field and .val() of radio button on click
 [x] Use a class to package three values into an object
-[ ] .ajax to GET array of objects from server
-[ ] - recieve array of objects from server
-[ ] - objects will include: input X & Y, Math operator, result
-[ ] .ajax to SEND object to server
-[ ] - recieve status code from SEND
+[x] .ajax to GET array of objects from server
+[x] - recieve array of objects from server
+[x] - objects will include: input X & Y, Math operator, result
+[x] .ajax to SEND object to server
+[x] - recieve status code from SEND
 
-[ ] For Of loop to append array contents to DOM
-[ ] - append to a table
+[x] For Of loop to append array contents to DOM
+[x] - append to a table
+
 [ ] CLEAR button that clears the table and any information on the server of previous inputs
 
 server.js
 [x] Establish an empty array to push result objects into
 [x] Respond to GET request and return array (will be empty when server starts)
-[ ] Accept POST request and send to the appropriate operator
-[ ] If/Else if statment to route the input from the client to the correct operation
-[ ] - based on value of 'radio button' input
-[ ] Functions for mathmatical operators:
-[ ] - addition
-[ ] - subtraction
-[ ] - multiplication
-[ ] - division 
-[ ] Push output of math operator to array
-[ ] Use a GET request from client to send array back to DOM
+[x] Accept POST request and send to the appropriate operator
+[x] If/Else if statment to route the input from the client to the correct operation
+[x] - based on value of 'radio button' input
+[x] Functions for mathmatical operators:
+[x] - addition
+[x] - subtraction
+[x] - multiplication
+[x] - division 
+[x] Push output of math operator to array
+[x] Use a GET request from client to send array back to DOM
 [ ] 
 [ ] Somehow handle a clear button???
 [ ]
