@@ -76,6 +76,12 @@ app.post('/history', (req, res) => {
 })
 
 
+app.delete('/history', (req, res) => {
+    equationHistory = [];
+    res.sendStatus(200); 
+
+})
+
 
 
 

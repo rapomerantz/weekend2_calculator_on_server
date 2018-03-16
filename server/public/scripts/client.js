@@ -10,6 +10,7 @@ function readyNow () {
 
 function engageClickHandlers () {
     $('#submitButton').on('click', submitClicked); 
+    $('#clearButton').on('click', clearClicked); 
 }
 
 function submitClicked () {
@@ -18,13 +19,9 @@ function submitClicked () {
     let operatorInput = $('input[name=operatorSel]:checked').val();
     // inputToClass(xInput, yInput, operatorInput); 
     postEquation(xInput, yInput, operatorInput);
+    $('#xInput').val('');
+    $('#yInput').val('');
 }
-
-
-
-
-
-
 
 function appendToTable(responseObject) {
     for (let each of responseObject) {
@@ -36,11 +33,11 @@ function appendToTable(responseObject) {
         tr.append('<td>' + xInput + '</td>');
         tr.append('<td>' + operatorInput + '</td>');
         tr.append('<td>' + yInput + '</td>');
+        tr.append('<td>=</td>');
         tr.append('<td>' + result + '</td>');
         $("#tableTarget").append(tr); 
     }
 }
-
 
 //.ajax function to get array of past equations from server
 //called in readyNow and postEquation 
@@ -55,7 +52,6 @@ function getHistory() {
     })
 
 }
-
 
 // POST function for inputs from DOM
 //called from submit Click
@@ -74,20 +70,14 @@ function postEquation (xIn, yIn, operatorIn) {
     })
 }
 
+//DELETE function ~ called from clear button 
+function clearClicked () {
+    $.ajax({
+        url: '/history',
+        type: 'DELETE',
+        success: function(result) {
+            $('#tableTarget').empty();             
+        }
+    });
+}
 
-
-
-//if I want to use a class: 
-
-// class Equation {
-//     constructor (xIn, yIn, operatorIn){
-//         this.x = xIn;
-//         this.y= yIn;
-//         this.operator = operatorIn; 
-//     }
-// }
-
-// function inputToClass(xIn, yIn, operatorIn) {
-//     let newEquation = new Equation (xIn, yIn, operatorIn); 
-//     postEquation(newEquation);
-// }
