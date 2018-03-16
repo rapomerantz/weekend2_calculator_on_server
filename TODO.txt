@@ -1,0 +1,35 @@
+To do List: 
+
+ON THE DOM: 
+[ ] 2 input fields, accepting numbers
+[ ] radio button for mathmatical operators
+[ ] History: table keeping track of previous inputs
+
+jQuery: 
+[ ] Accept .val() of input field and .val() of radio button
+[ ] Use a class to package three values into an object
+[ ] .ajax to SEND object to server
+[ ] - recieve status code from SEND
+[ ] .ajax to GET array of objects from server
+[ ] - recieve array of objects from server
+[ ] - objects will include: input X & Y, Math operator, result
+[ ] For Of loop to append array contents to DOM
+[ ] - append to a table
+[ ] CLEAR button that clears the table and any information on the server of previous inputs
+
+server.js
+[ ] Establish an empty array to push result objects into
+[ ] Respond to GET request and return array (will be empty when server starts)
+[ ] Accept POST request and send to the appropriate operator
+[ ] If/Else if statment to route the input from the client to the correct operation
+[ ] - based on value of 'radio button' input
+[ ] Functions for mathmatical operators:
+[ ] - addition
+[ ] - subtraction
+[ ] - multiplication
+[ ] - division 
+[ ] Push output of math operator to array
+[ ] Use a GET request from client to send array back to DOM
+[ ] 
+[ ] Somehow handle a clear button???
+[ ]
