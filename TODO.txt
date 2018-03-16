@@ -19,8 +19,8 @@ jQuery:
 [ ] CLEAR button that clears the table and any information on the server of previous inputs
 
 server.js
-[ ] Establish an empty array to push result objects into
-[ ] Respond to GET request and return array (will be empty when server starts)
+[x] Establish an empty array to push result objects into
+[x] Respond to GET request and return array (will be empty when server starts)
 [ ] Accept POST request and send to the appropriate operator
 [ ] If/Else if statment to route the input from the client to the correct operation
 [ ] - based on value of 'radio button' input

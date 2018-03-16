@@ -7,9 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('server/public')); 
 
-
-let equationHistory = [{x: '5', y: '6', operator: '+', result: '11'}];
-
+let equationHistory = [];
 
 //send client.js equation history (called in readyNow and after POST)
 app.get('/history', (req, res) => {
@@ -17,8 +15,49 @@ app.get('/history', (req, res) => {
 })
 
 
+//take in POST from client and route to correct equation function
+app.post('/history', (req, res) => {
+    let input = req.body
+    let x = parseInt(input.x);
+    let y = parseInt(input.y);
+    let operator = input.operator;
+    if (operator === "+") {
+        input.result = addition(x, y).toFixed(2);
+        console.log("new input object", input);
+        equationHistory.push(input); 
+    } else if (operator === "-") {
+        input.result = subtraction(x, y).toFixed(2);
+        console.log("new input object", input);
+        equationHistory.push(input); 
+    } else if (operator === "*") {
+        input.result = multiplication(x, y).toFixed(2);
+        console.log("new input object", input);
+        equationHistory.push(input); 
+    } else if (operator === "/") {
+        input.result = division(x, y).toFixed(2);
+        console.log("new input object", input);
+        equationHistory.push(input); 
+    }
+    console.log("equationHistory:", equationHistory);
+    res.sendStatus(200); 
+
+})
 
 
+
+function addition (x, y) {
+    return x + y; 
+}
+function subtraction (x, y) {
+    return x - y; 
+}
+function multiplication (x, y) {
+    return x * y; 
+
+}
+function division (x, y) {
+    return x / y; 
+}
 
 
 
