@@ -1,18 +1,19 @@
 To do List: 
 
 ON THE DOM: 
-[ ] 2 input fields, accepting numbers
-[ ] radio button for mathmatical operators
-[ ] History: table keeping track of previous inputs
+[x] 2 input fields, accepting numbers
+[x] radio button for mathmatical operators
+[x] History: table keeping track of previous inputs
 
 jQuery: 
-[ ] Accept .val() of input field and .val() of radio button
-[ ] Use a class to package three values into an object
-[ ] .ajax to SEND object to server
-[ ] - recieve status code from SEND
+[x] Accept .val() of input field and .val() of radio button on click
+[x] Use a class to package three values into an object
 [ ] .ajax to GET array of objects from server
 [ ] - recieve array of objects from server
 [ ] - objects will include: input X & Y, Math operator, result
+[ ] .ajax to SEND object to server
+[ ] - recieve status code from SEND
+
 [ ] For Of loop to append array contents to DOM
 [ ] - append to a table
 [ ] CLEAR button that clears the table and any information on the server of previous inputs

@@ -17,10 +17,10 @@
     <input type="number" id="xInput" placeholder="X Input" value="5">
     <input type="number" id="yInput" placeholder="Y Input" value="6">
     <br/>
-    <input type="radio" name="operator" class="operatorSel" value="Add" checked> Add<br>
-    <input type="radio" name="operator" class="operatorSel" value="Subtract"> Subtract<br>
-    <input type="radio" name="operator" class="operatorSel" value="Multiply"> Multiply<br>
-    <input type="radio" name="operator" class="operatorSel" value="Devide"> Devide
+    <input type="radio" name="operatorSel" class="operatorSel" value="+" checked> + <br>
+    <input type="radio" name="operatorSel" class="operatorSel" value="-"> - <br>
+    <input type="radio" name="operatorSel" class="operatorSel" value="*"> * <br>
+    <input type="radio" name="operatorSel" class="operatorSel" value="/"> /
     <br/>
     <button id="submitButton">Calculate Me, Cap'n!</button>
 
@@ -28,7 +28,7 @@
         <thead>
             <tr><td>X Input</td><td>Operator</td><td>Y Input</td><td>Result</td></tr>
         </thead>
-        <tbody>
+        <tbody id="tableTarget">
             <tr><td>5</td><td>+</td><td>6</td><td>11</td></tr>
         </tbody>
     </table>
