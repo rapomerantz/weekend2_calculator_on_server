@@ -14,6 +14,15 @@ function engageClickHandlers () {
     $('#multiply').on('click', multiplyClicked); 
     $('#divide').on('click', divideClicked); 
     $('#one').on('click', oneClicked); 
+    $('#two').on('click', twoClicked);
+    $('#three').on('click', threeClicked); 
+    $('#four').on('click', fourClicked);
+    $('#five').on('click', fiveClicked); 
+    $('#six').on('click', sixClicked);
+    $('#seven').on('click', sevenClicked); 
+    $('#eight').on('click', eightClicked);  
+    $('#nine').on('click', nineClicked);  
+    $('#zero').on('click', zeroClicked);    
     $('#equals').on('click', equalsClicked);
     $('#empty').on('click', emptyInputs);
 
@@ -25,6 +34,34 @@ function engageClickHandlers () {
 function oneClicked () {
     $('#inputP').append(1); 
 }
+function twoClicked() {
+    $('#inputP').append(2); 
+}
+function threeClicked() {
+    $('#inputP').append(3); 
+}
+function fourClicked() {
+    $('#inputP').append(4); 
+}
+function fiveClicked () {
+    $('#inputP').append(5); 
+}
+function sixClicked() {
+    $('#inputP').append(6); 
+}
+function sevenClicked() {
+    $('#inputP').append(7); 
+}
+function eightClicked() {
+    $('#inputP').append(8); 
+}
+function nineClicked() {
+    $('#inputP').append(9); 
+}
+function zeroClicked() {
+    $('#inputP').append(0); 
+}
+
 
 
 function emptyInputs (){
@@ -38,56 +75,47 @@ function emptyInputs (){
 //send the .text() from storeXP and storeYP to the server
 //clears stored values and operator with emptyInputs()
 function equalsClicked() {
-    let xInput = $('#storeXP').text();
-    let yInput = $('#storeXP').text(); 
-    let operatorInput = operator; 
-    postEquation(xInput, yInput, operatorInput);
-    emptyInputs ()
+    if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
+        let xInput = $('#storeXP').text();
+        let yInput = $('#inputP').text(); 
+        let operatorInput = operator; 
+        postEquation(xInput, yInput, operatorInput);
+        emptyInputs ()
+    }
+    else {
+        alert("Did you input all the numbers?")
+    }
 }
-
 
 //moves value of inputP to either storeXP or storeYP
 //changes operator global var to "+"
-function addClicked () {
-    operator = "+"
+
+
+function storeInputs () {
     if ($('#storeXP').text().length === 0){
             $('#storeXP').append($('#inputP').text());
             $('#inputP').text('');
-    } 
-    else if ($('#storeXP').text().length > 0 && $('#storeYP').text().length === 0) {
-            $('#storeYP').append($('#inputP').text());
-            $('#inputP').text('');
     }
-    else if ($('#storeXP').text().length > 0 && $('#storeYP').text().length > 0) {
-            $('#inputP').text('');
-            alert('Must CLEAR or run operation!')   
+    else if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
+         alert('At this time we can only accept two(2) values. Please press EMPTY or =')       
     }   
 }
 
-
+function addClicked () {
+    operator = "+"
+    storeInputs ()
+}
 function subtractClicked () {
-    let xInput = $('#xInput').val(); 
-    let yInput = $('#yInput').val();
-    let operatorInput = "-"; 
-    postEquation(xInput, yInput, operatorInput);
-    $('#xInput').val('');
-    $('#yInput').val('');
+    operator = "-"
+    storeInputs ()
 }
 function multiplyClicked () {
-    let xInput = $('#xInput').val(); 
-    let yInput = $('#yInput').val();
-    let operatorInput = "*"; 
-    postEquation(xInput, yInput, operatorInput);
-    $('#xInput').val('');
-    $('#yInput').val('');
+    operator = "*"
+    storeInputs ()
 }
 function divideClicked () {
-    let xInput = $('#xInput').val(); 
-    let yInput = $('#yInput').val();
-    let operatorInput = "/"; 
-    postEquation(xInput, yInput, operatorInput);
-    $('#xInput').val('');
-    $('#yInput').val('');
+    operator = "/"
+    storeInputs ()
 }
 
 
