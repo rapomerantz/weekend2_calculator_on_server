@@ -1,3 +1,5 @@
+let operator; 
+
 $(document).ready(readyNow); 
 
 function readyNow () {
@@ -7,21 +9,61 @@ function readyNow () {
 
 function engageClickHandlers () {
     // $('#submitButton').on('click', submitClicked); 
-    $('#addButton').on('click', addClicked); 
-    $('#subtractButton').on('click', subtractClicked);
-    $('#multiplyButton').on('click', multiplyClicked); 
-    $('#divideButton').on('click', devideClicked); 
+    $('#add').on('click', addClicked); 
+    $('#subtract').on('click', subtractClicked);
+    $('#multiply').on('click', multiplyClicked); 
+    $('#divide').on('click', divideClicked); 
+    $('#one').on('click', oneClicked); 
+    $('#equals').on('click', equalsClicked);
+    $('#empty').on('click', emptyInputs);
+
+
+
     $('#clearButton').on('click', clearClicked); 
 }
 
-function addClicked () {
-    let xInput = $('#xInput').val(); 
-    let yInput = $('#yInput').val();
-    let operatorInput = "+"; 
-    postEquation(xInput, yInput, operatorInput);
-    $('#xInput').val('');
-    $('#yInput').val('');
+function oneClicked () {
+    $('#inputP').append(1); 
 }
+
+
+function emptyInputs (){
+    $('#storeXP').text("");
+    $('#storeYP').text("");
+    $('#inputP').text("");    
+    operator = undefined;
+}
+
+
+//send the .text() from storeXP and storeYP to the server
+//clears stored values and operator with emptyInputs()
+function equalsClicked() {
+    let xInput = $('#storeXP').text();
+    let yInput = $('#storeXP').text(); 
+    let operatorInput = operator; 
+    postEquation(xInput, yInput, operatorInput);
+    emptyInputs ()
+}
+
+
+//moves value of inputP to either storeXP or storeYP
+//changes operator global var to "+"
+function addClicked () {
+    operator = "+"
+    if ($('#storeXP').text().length === 0){
+            $('#storeXP').append($('#inputP').text());
+            $('#inputP').text('');
+    } 
+    else if ($('#storeXP').text().length > 0 && $('#storeYP').text().length === 0) {
+            $('#storeYP').append($('#inputP').text());
+            $('#inputP').text('');
+    }
+    else if ($('#storeXP').text().length > 0 && $('#storeYP').text().length > 0) {
+            $('#inputP').text('');
+            alert('Must CLEAR or run operation!')   
+    }   
+}
+
 
 function subtractClicked () {
     let xInput = $('#xInput').val(); 
@@ -31,7 +73,6 @@ function subtractClicked () {
     $('#xInput').val('');
     $('#yInput').val('');
 }
-
 function multiplyClicked () {
     let xInput = $('#xInput').val(); 
     let yInput = $('#yInput').val();
@@ -40,8 +81,7 @@ function multiplyClicked () {
     $('#xInput').val('');
     $('#yInput').val('');
 }
-
-function devideClicked () {
+function divideClicked () {
     let xInput = $('#xInput').val(); 
     let yInput = $('#yInput').val();
     let operatorInput = "/"; 
@@ -49,6 +89,11 @@ function devideClicked () {
     $('#xInput').val('');
     $('#yInput').val('');
 }
+
+
+
+
+
 
 function appendToTable(responseObject) {
     for (let each of responseObject) {
@@ -106,21 +151,4 @@ function clearClicked () {
             $('#tableTarget').empty();             
         }
     });
-}
-
-
-
-
-
-
-
-//junk below
-function submitClicked () {
-    let xInput = $('#xInput').val();
-    let yInput = $('#yInput').val();
-    let operatorInput = $('input[name=operatorSel]:checked').val();
-    // inputToClass(xInput, yInput, operatorInput); 
-    postEquation(xInput, yInput, operatorInput);
-    $('#xInput').val('');
-    $('#yInput').val('');
 }
