@@ -22,13 +22,14 @@ function engageClickHandlers () {
     $('#seven').on('click', sevenClicked); 
     $('#eight').on('click', eightClicked);  
     $('#nine').on('click', nineClicked);  
-    $('#zero').on('click', zeroClicked);    
+    $('#zero').on('click', zeroClicked); 
+    $('#dot').on('click', dotClicked);    
     $('#equals').on('click', equalsClicked);
-    $('#empty').on('click', emptyInputs);
+    $('#clearInputs').on('click', clearInputs);
 
 
 
-    $('#clearButton').on('click', clearClicked); 
+    $('#clearHistory').on('click', clearHistoryClicked); 
 }
 
 function oneClicked () {
@@ -61,18 +62,18 @@ function nineClicked() {
 function zeroClicked() {
     $('#inputP').append(0); 
 }
-
-
-
-function emptyInputs (){
-    $('#storeXP').text("");
-    $('#storeYP').text("");
-    $('#inputP').text("");    
-    operator = undefined;
+function dotClicked() {
+    $('#inputP').append("."); 
 }
 
+function clearInputs (){
+    $('#storeXP').text("");
+    $('#inputP').text("");    
+    operator = "";
+    appendOperator()
+}
 
-//send the .text() from storeXP and storeYP to the server
+//send the .text() from storeXP and inputP to the server
 //clears stored values and operator with emptyInputs()
 function equalsClicked() {
     if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
@@ -80,17 +81,14 @@ function equalsClicked() {
         let yInput = $('#inputP').text(); 
         let operatorInput = operator; 
         postEquation(xInput, yInput, operatorInput);
-        emptyInputs ()
+        clearInputs ()
     }
     else {
         alert("Did you input all the numbers?")
     }
 }
 
-//moves value of inputP to either storeXP or storeYP
-//changes operator global var to "+"
-
-
+//moves value of inputP to storeXP or triggers alert
 function storeInputs () {
     if ($('#storeXP').text().length === 0){
             $('#storeXP').append($('#inputP').text());
@@ -101,21 +99,29 @@ function storeInputs () {
     }   
 }
 
+function appendOperator() {
+    $('#storeOperatorP').text(operator); 
+}
+
 function addClicked () {
     operator = "+"
     storeInputs ()
+    appendOperator()
 }
 function subtractClicked () {
     operator = "-"
     storeInputs ()
+    appendOperator()
 }
 function multiplyClicked () {
     operator = "*"
     storeInputs ()
+    appendOperator()
 }
 function divideClicked () {
     operator = "/"
     storeInputs ()
+    appendOperator()
 }
 
 
@@ -171,7 +177,7 @@ function postEquation (xIn, yIn, operatorIn) {
 }
 
 //DELETE function ~ called from clear button 
-function clearClicked () {
+function clearHistoryClicked () {
     $.ajax({
         url: '/history',
         type: 'DELETE',

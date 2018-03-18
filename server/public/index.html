@@ -9,63 +9,63 @@
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
 
-    <title>Weekend 2 ~ Calculator</title>
+    <title>Atticus Weekend 2 ~ Calculator</title>
 </head>
 <body>
-    <h1>Weekend 2 ~ Calculator</h1>
-    <!-- <input type="text" id="xInput" placeholder="X Input">
-    <input type="text" id="yInput" placeholder="Y Input">
-     -->
-    <div id="inputDiv">
-        <p>Input</p>
-        <p id="inputP"></p>
+<div id="container">
+    <h1>Atticus ~ Weekend 2 Calculator</h1>
+    <div id="storedNumbers">
+        <div class="storage" id="storeXDiv">
+            <span>Stored Number: </span>
+            <span id="storeXP"></span>
+        </div>
+        <div class="storage" id="inputDiv">
+            <span>Input: </span>
+            <span id="inputP"></span>
+        </div>
+        <div class="storage" id="storeOperatorDiv">
+                <span>Operator Selected: </span>
+                <span id="storeOperatorP"></span>
+        </div>
+        <br/>
+        <br/>
     </div>
-    <div id="storeXDiv">
-        <p>Stored Number</p>
-        <p id="storeXP"></p>
+
+     <div id="calcButtonsDiv">
+        <button class="calcButton" id="seven">7</button>
+        <button class="calcButton" id="eight">8</button>
+        <button class="calcButton" id="nine">9</button>
+        <button class="calcButton operator" id="divide">/</button>
+        <br/>
+        <button class="calcButton" id="four">4</button>
+        <button class="calcButton" id="five">5</button>
+        <button class="calcButton" id="six">6</button>
+        <button class="calcButton operator" id="multiply">*</button>
+        <br/>
+        <button class="calcButton" id="one">1</button>
+        <button class="calcButton" id="two">2</button>
+        <button class="calcButton" id="three">3</button>
+        <button class="calcButton operator" id="subtract">-</button>
+        <br/>
+        <button class="calcButton" id="zero">0</button>
+        <button class="calcButton" id="dot">.</button>
+        <button class="calcButton" id="equals">=</button>
+        <button class="calcButton operator" id="add">+</button>
+        <br/>
+        <button class="" id="clearInputs">CLEAR INPUTS</button>
     </div>
-    <!-- <div id="storeOperatorDiv">
-            <p>Operator</p>
-            <p id="storeOperatorP"></p>
-        </div> -->
-
-
-    <br/>
-    <button id="seven">7</button>
-    <button id="eight">8</button>
-    <button id="nine">9</button>
-    <button id="divide">/</button>
-    <br/>
-    <button id="four">4</button>
-    <button id="five">5</button>
-    <button id="six">6</button>
-    <button id="multiply">*</button>
-    <br/>
-    <button id="one">1</button>
-    <button id="two">2</button>
-    <button id="three">3</button>
-    <button id="subtract">-</button>
-    <br/>
-    <button id="zero">0</button>
-    <button id="dot">.</button>
-    <button id="equals">=</button>
-    <button id="add">+</button>
-    <br/>
-    <button id="empty">CLEAR INPUTS</button>
- 
-
-
-
-    <table>
-        <!-- <thead>
-            <tr><td>X Input</td><td>Operator</td><td>Y Input</td><td>=</td><td>Result</td></tr>
-        </thead> -->
-        <tbody id="tableTarget">
-
-        </tbody>
-    </table>
-    <button id="clearButton">CLEAR HISTORY</button>
-
+    <div id="tableButtonDiv">
+        <table>
+            <!-- <thead>
+                <tr><td>X Input</td><td>Operator</td><td>Y Input</td><td>=</td><td>Result</td></tr>
+            </thead> -->
+            <tbody id="tableTarget">
+            </tbody>
+        </table>
+        <br/>
+        <button id="clearHistory">CLEAR HISTORY</button>
+    </div>
+</div>
 
 </body>
 </html>
