@@ -26,10 +26,87 @@ function engageClickHandlers () {
     $('#dot').on('click', dotClicked);    
     $('#equals').on('click', equalsClicked);
     $('#clearInputs').on('click', clearInputs);
+    $('#clearHistory').on('click', clearHistoryClicked);
+    $('#tableButtonDiv').on('click', '.tableValue', reuseEquation); 
+    $('#clearButtonDiv').hide(); 
+}
+
+function reuseEquation() {
+    let reuseX = ($(this).children().first().text());
+    let reuseOperator = ($(this).children().first().next().text());
+    let reuseY = ($(this).children().first().next().next().text());
+    postEquation (reuseX, reuseY, reuseOperator);
+}
+
+//send the .text() from storeXP and inputP to the server
+//clears stored values and operator with emptyInputs()
+function equalsClicked() {
+    if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
+        let xInput = $('#storeXP').text();
+        let yInput = $('#inputP').text(); 
+        let operatorInput = operator; 
+        postEquation(xInput, yInput, operatorInput);
+        clearInputs ()
+        $('#clearButtonDiv').show();
+    }
+    else {
+        alert("Did you input all the numbers?")
+    }
+}
+//moves value of inputP to storeXP or triggers alert
+function storeInputs () {
+    if ($('#storeXP').text().length === 0){
+            $('#storeXP').append($('#inputP').text());
+            $('#inputP').text('');
+    }
+    else if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
+         alert('At this time we can only accept two(2) values. Please press EMPTY or =')       
+    }   
+}
+
+function appendOperator() {
+    $('#storeOperatorP').text(operator); 
+}
+function addClicked () {
+    operator = "+"
+    storeInputs ()
+    appendOperator()
+}
+function subtractClicked () {
+    operator = "-"
+    storeInputs ()
+    appendOperator()
+}
+function multiplyClicked () {
+    operator = "*"
+    storeInputs ()
+    appendOperator()
+}
+function divideClicked () {
+    operator = "/"
+    storeInputs ()
+    appendOperator()
+}
 
 
-
-    $('#clearHistory').on('click', clearHistoryClicked); 
+function appendToTable(responseObject) {
+    for (let each of responseObject) {
+        let xInput = each.x;
+        let yInput = each.y;
+        let operatorInput = each.operator;
+        let result = each.result; 
+        let tr = $('<tr class="tableValue"></tr>')
+        tr.append('<td>' + xInput + '</td>');
+        tr.append('<td>' + operatorInput + '</td>');
+        tr.append('<td>' + yInput + '</td>');
+        tr.append('<td>=</td>');
+        tr.append('<td>' + result + '</td>');
+        $("#tableTarget").append(tr); 
+    }
+    if ($("#tableTarget").text()) {
+        $('#clearButtonDiv').show(); 
+    }
+    
 }
 
 function oneClicked () {
@@ -65,7 +142,6 @@ function zeroClicked() {
 function dotClicked() {
     $('#inputP').append("."); 
 }
-
 function clearInputs (){
     $('#storeXP').text("");
     $('#inputP').text("");    
@@ -73,77 +149,8 @@ function clearInputs (){
     appendOperator()
 }
 
-//send the .text() from storeXP and inputP to the server
-//clears stored values and operator with emptyInputs()
-function equalsClicked() {
-    if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
-        let xInput = $('#storeXP').text();
-        let yInput = $('#inputP').text(); 
-        let operatorInput = operator; 
-        postEquation(xInput, yInput, operatorInput);
-        clearInputs ()
-    }
-    else {
-        alert("Did you input all the numbers?")
-    }
-}
-
-//moves value of inputP to storeXP or triggers alert
-function storeInputs () {
-    if ($('#storeXP').text().length === 0){
-            $('#storeXP').append($('#inputP').text());
-            $('#inputP').text('');
-    }
-    else if ($('#storeXP').text().length > 0 && $('#inputP').text().length > 0) {
-         alert('At this time we can only accept two(2) values. Please press EMPTY or =')       
-    }   
-}
-
-function appendOperator() {
-    $('#storeOperatorP').text(operator); 
-}
-
-function addClicked () {
-    operator = "+"
-    storeInputs ()
-    appendOperator()
-}
-function subtractClicked () {
-    operator = "-"
-    storeInputs ()
-    appendOperator()
-}
-function multiplyClicked () {
-    operator = "*"
-    storeInputs ()
-    appendOperator()
-}
-function divideClicked () {
-    operator = "/"
-    storeInputs ()
-    appendOperator()
-}
 
 
-
-
-
-
-function appendToTable(responseObject) {
-    for (let each of responseObject) {
-        let xInput = each.x;
-        let yInput = each.y;
-        let operatorInput = each.operator;
-        let result = each.result; 
-        let tr = $('<tr></tr>')
-        tr.append('<td>' + xInput + '</td>');
-        tr.append('<td>' + operatorInput + '</td>');
-        tr.append('<td>' + yInput + '</td>');
-        tr.append('<td>=</td>');
-        tr.append('<td>' + result + '</td>');
-        $("#tableTarget").append(tr); 
-    }
-}
 
 //.ajax function to get array of past equations from server
 //called in readyNow and postEquation 
@@ -182,7 +189,8 @@ function clearHistoryClicked () {
         url: '/history',
         type: 'DELETE',
         success: function(result) {
-            $('#tableTarget').empty();             
+            $('#tableTarget').empty(); 
+            $('#clearButtonDiv').hide();            
         }
     });
 }
