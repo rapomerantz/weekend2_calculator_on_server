@@ -88,27 +88,6 @@ function divideClicked () {
     appendOperator()
 }
 
-
-function appendToTable(responseObject) {
-    for (let each of responseObject) {
-        let xInput = each.x;
-        let yInput = each.y;
-        let operatorInput = each.operator;
-        let result = each.result; 
-        let tr = $('<tr class="tableValue"></tr>')
-        tr.append('<td>' + xInput + '</td>');
-        tr.append('<td>' + operatorInput + '</td>');
-        tr.append('<td>' + yInput + '</td>');
-        tr.append('<td>=</td>');
-        tr.append('<td>' + result + '</td>');
-        $("#tableTarget").append(tr); 
-    }
-    if ($("#tableTarget").text()) {
-        $('#clearButtonDiv').show(); 
-    }
-    
-}
-
 function oneClicked () {
     $('#inputP').append(1); 
 }
@@ -150,6 +129,26 @@ function clearInputs (){
 }
 
 
+
+function appendToTable(responseObject) {
+    for (let each of responseObject) {
+        let xInput = each.x;
+        let yInput = each.y;
+        let operatorInput = each.operator;
+        let result = each.result; 
+        let tr = $('<tr class="tableValue"></tr>')
+        tr.append('<td>' + xInput + '</td>');
+        tr.append('<td>' + operatorInput + '</td>');
+        tr.append('<td>' + yInput + '</td>');
+        tr.append('<td>=</td>');
+        tr.append('<td>' + result + '</td>');
+        $("#tableTarget").append(tr); 
+    }
+    if ($("#tableTarget").text()) {
+        $('#clearButtonDiv').show(); 
+    }
+    
+}
 
 
 //.ajax function to get array of past equations from server
