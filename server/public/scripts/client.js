@@ -6,15 +6,45 @@ function readyNow () {
 }
 
 function engageClickHandlers () {
-    $('#submitButton').on('click', submitClicked); 
+    // $('#submitButton').on('click', submitClicked); 
+    $('#addButton').on('click', addClicked); 
+    $('#subtractButton').on('click', subtractClicked);
+    $('#multiplyButton').on('click', multiplyClicked); 
+    $('#divideButton').on('click', devideClicked); 
     $('#clearButton').on('click', clearClicked); 
 }
 
-function submitClicked () {
-    let xInput = $('#xInput').val();
+function addClicked () {
+    let xInput = $('#xInput').val(); 
     let yInput = $('#yInput').val();
-    let operatorInput = $('input[name=operatorSel]:checked').val();
-    // inputToClass(xInput, yInput, operatorInput); 
+    let operatorInput = "+"; 
+    postEquation(xInput, yInput, operatorInput);
+    $('#xInput').val('');
+    $('#yInput').val('');
+}
+
+function subtractClicked () {
+    let xInput = $('#xInput').val(); 
+    let yInput = $('#yInput').val();
+    let operatorInput = "-"; 
+    postEquation(xInput, yInput, operatorInput);
+    $('#xInput').val('');
+    $('#yInput').val('');
+}
+
+function multiplyClicked () {
+    let xInput = $('#xInput').val(); 
+    let yInput = $('#yInput').val();
+    let operatorInput = "*"; 
+    postEquation(xInput, yInput, operatorInput);
+    $('#xInput').val('');
+    $('#yInput').val('');
+}
+
+function devideClicked () {
+    let xInput = $('#xInput').val(); 
+    let yInput = $('#yInput').val();
+    let operatorInput = "/"; 
     postEquation(xInput, yInput, operatorInput);
     $('#xInput').val('');
     $('#yInput').val('');
@@ -78,3 +108,19 @@ function clearClicked () {
     });
 }
 
+
+
+
+
+
+
+//junk below
+function submitClicked () {
+    let xInput = $('#xInput').val();
+    let yInput = $('#yInput').val();
+    let operatorInput = $('input[name=operatorSel]:checked').val();
+    // inputToClass(xInput, yInput, operatorInput); 
+    postEquation(xInput, yInput, operatorInput);
+    $('#xInput').val('');
+    $('#yInput').val('');
+}
