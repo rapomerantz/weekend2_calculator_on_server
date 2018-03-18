@@ -14,7 +14,6 @@ app.get('/history', (req, res) => {
     res.send(equationHistory); 
 })
 
-
 //take in POST from client and route to correct equation function
 //add .result and push entire object to equationHistory
 app.post('/history', (req, res) => {
@@ -75,11 +74,9 @@ app.post('/history', (req, res) => {
 
 })
 
-
 app.delete('/history', (req, res) => {
     equationHistory = [];
     res.sendStatus(200); 
-
 })
 
 
